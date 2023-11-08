@@ -1,2 +1,2 @@
-# J-Mat-Game-Engine
-A better way to make games in MATLAB.
+# The Little Engine That Could
+A better game engine for MATLAB that can do more than most.
