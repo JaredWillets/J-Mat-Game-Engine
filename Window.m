@@ -21,9 +21,29 @@ classdef Window
             this = self;
         end
         function render(self)
-            temp = imrotate(self.pixels,90,'bilinear','loose');
-            temp = flip(temp, 1);
+            temp = flip(imrotate(self.pixels,90,'bilinear','loose'),1);
             imshow(uint8(temp(:,:,1:3)));
+        end
+        function this = drawLine(self, x1, y1, x2, y2, color)
+            mode = 1;
+            if min(x1, x2) == x2
+                mode = 2;
+            end
+            if mode == 1
+                m = (y2-y1)/(x2-x1);
+                for x = 0:x2-x1
+                    
+                    self.pixels(x1+x+1,uint32(x*m)+1,1:3) = color(1:3);
+                end
+            elseif mode == 2
+                m = (y1-y2)/(x1-x2);
+                for x = 0:x1-x2
+                    self.pixels(x2+x+1,uint32(x*m)+1,1:3) = color(1:3);
+                end
+            end
+
+            this = self;
+            
         end
         function this = clear(self)
             self.pixels = zeros(self.resolution);
