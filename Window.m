@@ -15,13 +15,13 @@ classdef Window
             
         end
         function this = blit(self, object, position)
-            self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 1) = self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 1) + imrotate(double(object.pixels(:,:,1)),90,'bilinear','crop') .* object.transparency(:,:);
-            self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 2) = self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 2) + imrotate(double(object.pixels(:,:,2)),90,'bilinear','crop') .* object.transparency(:,:);
-            self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 3) = self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 3) + imrotate(double(object.pixels(:,:,3)),90,'bilinear','crop') .* object.transparency(:,:);
+            self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 1) = self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 1) + object.pixels(:,:,1) .* object.transparency(:,:);
+            self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 2) = self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 2) + object.pixels(:,:,2) .* object.transparency(:,:);
+            self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 3) = self.pixels(position(1):position(1)+object.width-1, position(2):position(2)+object.height-1, 3) + object.pixels(:,:,3) .* object.transparency(:,:);
             this = self;
         end
         function render(self)
-            temp = imrotate(self.pixels,90,'bilinear','crop');
+            temp = imrotate(self.pixels,90,'bilinear','loose');
             temp = flip(temp, 1);
             imshow(uint8(temp(:,:,1:3)));
         end
