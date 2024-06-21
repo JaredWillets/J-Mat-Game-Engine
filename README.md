@@ -1,2 +1,12 @@
 # The Little Engine That Could
-A better game engine for MATLAB that can do more than most.
+
+A great engine that can be used for various purposes in MATLAB. 
+
+### Issues
+- Low framerate
+- No default line
+- No default circle
+- Missing keyboard inputs
+- Missing mouse inputs
+
+This is still in development and needs a significant number of enhancements, however a viable golf game has been previously created using this engine.
