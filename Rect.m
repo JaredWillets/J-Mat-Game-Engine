@@ -1,7 +1,7 @@
 classdef Rect
     properties
         width = 1
-        height = 01
+        height = 1
         color = [255 255 255]
         pixels = zeros([1 1 3])
     end
